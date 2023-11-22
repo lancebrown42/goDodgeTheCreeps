@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://cq5g7lps5gkyn"]
+
+[ext_resource type="Script" path="res://mob.gd" id="1_gwt0i"]
+[ext_resource type="Texture2D" uid="uid://ojxpvirji61d" path="res://art/enemyFlyingAlt_1.png" id="1_kkmx2"]
+[ext_resource type="Texture2D" uid="uid://buhqqplfy2xxj" path="res://art/enemyFlyingAlt_2.png" id="2_csjks"]
+[ext_resource type="Texture2D" uid="uid://bi7x4dylkjxdn" path="res://art/enemySwimming_1.png" id="3_ccl6e"]
+[ext_resource type="Texture2D" uid="uid://p5i4wu53qorg" path="res://art/enemySwimming_2.png" id="4_4n5g6"]
+[ext_resource type="Texture2D" uid="uid://c1wkqqkiy2iwx" path="res://art/enemyWalking_1.png" id="5_y3iuf"]
+[ext_resource type="Texture2D" uid="uid://bww8h7lskilet" path="res://art/enemyWalking_2.png" id="6_o3hvo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l3c4l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_kkmx2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_csjks")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ccl6e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4n5g6")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_y3iuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_o3hvo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ihx26"]
+radius = 36.0
+height = 98.0
+
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_gwt0i")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_l3c4l")
+animation = &"fly"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ihx26")

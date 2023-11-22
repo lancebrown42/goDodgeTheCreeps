@@ -3,8 +3,9 @@ signal hit
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 func _ready():
-	screen_size = get_viewport_rect().size
 	hide()
+	screen_size = get_viewport_rect().size
+
 	
 func _process(delta):
 	var velocity = Vector2.ZERO # The player's movement vector.
@@ -39,6 +40,8 @@ func _on_body_entered(body):
 	hit.emit()
 	$CollisionShape2D.set_deferred("disabled",true)
 func start(pos):
+	print_debug('Starting player')
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+	print_debug('leaving player start')
